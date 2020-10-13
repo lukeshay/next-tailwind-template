@@ -37,22 +37,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup
         run: yarn
-      - name: Migrate Database
-        run: yarn migrate:remote
-        env:
-          SQL_PORT: 3306
-          SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
-          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-          SQL_USER: ${{ secrets.SQL_USER }}
-          SQL_HOST: ${{ secrets.SQL_HOST }}
-      # - name: Seed Database
-      #   run: yarn seed:remote
-      #   env:
-      #     SQL_PORT: 3306
-      #     SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
-      #     SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-      #     SQL_USER: ${{ secrets.SQL_USER }}
-      #     SQL_HOST: ${{ secrets.SQL_HOST }}
       - name: Deploy Preview
         uses: amondnet/vercel-action@v19
         with:

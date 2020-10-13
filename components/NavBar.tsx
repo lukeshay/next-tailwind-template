@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import LightLogo from './logos/VercelLogo';
+import { useRouter } from 'next/router';
+import Logo from './logos/VercelLogo';
 import { Paths } from '../lib/paths';
+import LinkedinLogo from './logos/LinkedinLogo';
 import GitHubLogo from './logos/GitHubLogo';
 import GitLabLogo from './logos/GitLabLogo';
-import LinkedinLogo from './logos/LinkedinLogo';
 
 function NavBar() {
   const [open, setOpen] = React.useState(false);
@@ -15,18 +16,18 @@ function NavBar() {
 
   return (
     <div>
-      <nav className="flex items-center justify-between flex-wrap bg-teal-500 py-3 px-6 mb-8">
+      <nav className="flex items-center justify-between flex-wrap bg-white py-3 px-6 mb-8">
         <Link href={Paths.HOME}>
           <div
             aria-label="Home"
-            className="flex items-center flex-shrink-0 text-white mr-6 cursor-pointer"
+            className="flex items-center flex-shrink-0 text-gray-500 mr-6 cursor-pointer"
           >
-            <LightLogo size={130} className="mr-4" />
+            <Logo size={130} className="mr-4" />
           </div>
         </Link>
         <div className="md:hidden">
           <button
-            className="flex items-center px-3 py-2 border rounded text-teal-100 border-teal-400 hover:text-white hover:border-white"
+            className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-500 hover:text-indigo-500 hover:border-gray-900"
             type="button"
             id="main-menu"
             aria-label="Main menu"
@@ -36,7 +37,7 @@ function NavBar() {
             <svg
               className="fill-current h-3 w-3"
               viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="http://www.w3.org/5000/svg"
             >
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -46,17 +47,12 @@ function NavBar() {
         <div className="hidden md:flex w-auto flex-grow items-center">
           <div className="text-sm flex-grow">
             <Link href="#">
-              <a className="inline-block text-sm px-4 py-2 text-teal-100 leading-none rounded hover:text-white hover:bg-teal-400 mr-4">
+              <a className="inline-block text-sm px-4 py-2 text-gray-500 hover:text-indigo-500 leading-none rounded mr-4 transition duration-150 ease-in-out">
                 About
               </a>
             </Link>
             <Link href="#">
-              <a className="inline-block text-sm px-4 py-2 text-teal-100 leading-none rounded hover:text-white hover:bg-teal-400 mr-4">
-                Services
-              </a>
-            </Link>
-            <Link href="#">
-              <a className="inline-block text-sm px-4 py-2 text-teal-100 leading-none rounded hover:text-white hover:bg-teal-400 mr-4">
+              <a className="inline-block text-sm px-4 py-2 text-gray-500 hover:text-indigo-500 leading-none rounded mr-4 transition duration-150 ease-in-out">
                 Documentation
               </a>
             </Link>
@@ -84,23 +80,19 @@ function NavBar() {
         <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
           <div className="rounded-lg shadow-md">
             <div
-              className="rounded-lg bg-teal-500 shadow-xs overflow-hidden"
+              className="rounded-lg shadow-xs overflow-hidden bg-white"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="main-menu"
             >
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
-                    alt=""
-                  />
+                  <Logo size={40} />
                 </div>
                 <div className="-mr-2">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-indigo-500 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150 ease-in-out"
                     aria-label="Close menu"
                     onClick={handleClick}
                   >
@@ -116,34 +108,36 @@ function NavBar() {
                 </div>
               </div>
               <div className="px-2 pt-2 pb-3">
-                <a
-                  href="#"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-teal-100 leading-none hover:text-white hover:bg-teal-400 transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  Product
-                </a>
-                <a
-                  href="#"
-                  className="mt-1 block px-3 py-2 rounded-md text-base font-medium  text-teal-100 leading-none hover:text-white hover:bg-teal-400 transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="mt-1 block px-3 py-2 rounded-md text-base font-medium  text-teal-100 leading-none hover:text-white hover:bg-teal-400 transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="mt-1 block px-3 py-2 rounded-md text-base font-medium  text-teal-100 leading-none hover:text-white hover:bg-teal-400 transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  Company
-                </a>
+                <Link href={Paths.HOME}>
+                  <a
+                    href="#"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 leading-none hover:text-indigo-500 transition duration-150 ease-in-out"
+                    role="menuitem"
+                    onClick={handleClick}
+                  >
+                    Home
+                  </a>
+                </Link>
+                <Link href="#">
+                  <a
+                    href="#"
+                    className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-500 leading-none hover:text-indigo-500 transition duration-150 ease-in-out"
+                    role="menuitem"
+                    onClick={handleClick}
+                  >
+                    About
+                  </a>
+                </Link>
+                <Link href="#">
+                  <a
+                    href="#"
+                    className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-500 leading-none hover:text-indigo-500 transition duration-150 ease-in-out"
+                    role="menuitem"
+                    onClick={handleClick}
+                  >
+                    Documentation
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
